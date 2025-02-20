@@ -1,8 +1,8 @@
+
 import React, { useState } from 'react';
 import { Window } from './Window';
 import { TaskBar } from './TaskBar';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Textarea } from './ui/textarea';
+import { FileText } from 'lucide-react'; // Import the FileText icon for the resume
 
 interface WindowState {
   id: number;
@@ -24,6 +24,10 @@ export const Desktop = () => {
     setNextId(nextId + 1);
   };
 
+  const openResume = () => {
+    window.open('https://drive.google.com/file/d/1yFPOWOoSzX8N2JRJh8ZZibAOxaBilS_c/view?usp=sharing', '_blank');
+  };
+
   const closeWindow = (id: number) => {
     setWindows(windows.filter(w => w.id !== id));
   };
@@ -33,6 +37,12 @@ export const Desktop = () => {
   };
 
   const desktopIcons = [
+    { 
+      title: 'My Resume',
+      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png',
+      onClick: openResume,
+      customIcon: <FileText className="w-12 h-12 text-white drop-shadow-lg" />
+    },
     { 
       title: 'My Documents',
       iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png'
@@ -56,35 +66,6 @@ export const Desktop = () => {
   ];
 
   const renderWindowContent = (title: string) => {
-    if (title === 'Notepad') {
-      return (
-        <Tabs defaultValue="personal" className="w-full">
-          <TabsList className="w-full bg-vista-window border-b border-vista-border">
-            <TabsTrigger value="personal" className="data-[state=active]:bg-white">Personal Notes</TabsTrigger>
-            <TabsTrigger value="work" className="data-[state=active]:bg-white">Work Notes</TabsTrigger>
-            <TabsTrigger value="ideas" className="data-[state=active]:bg-white">Ideas</TabsTrigger>
-          </TabsList>
-          <TabsContent value="personal" className="mt-2">
-            <Textarea 
-              placeholder="Write your personal notes here..."
-              className="min-h-[300px] bg-white resize-none font-tahoma"
-            />
-          </TabsContent>
-          <TabsContent value="work" className="mt-2">
-            <Textarea 
-              placeholder="Write your work-related notes here..."
-              className="min-h-[300px] bg-white resize-none font-tahoma"
-            />
-          </TabsContent>
-          <TabsContent value="ideas" className="mt-2">
-            <Textarea 
-              placeholder="Write your ideas here..."
-              className="min-h-[300px] bg-white resize-none font-tahoma"
-            />
-          </TabsContent>
-        </Tabs>
-      );
-    }
     return (
       <div className="p-4">
         <h2 className="text-lg font-semibold mb-4">{title}</h2>
@@ -99,14 +80,16 @@ export const Desktop = () => {
         {desktopIcons.map((icon, index) => (
           <button
             key={index}
-            onClick={() => openWindow(icon.title)}
+            onClick={icon.onClick || (() => openWindow(icon.title))}
             className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
           >
-            <img 
-              src={icon.iconUrl} 
-              alt={icon.title}
-              className="w-12 h-12 drop-shadow-lg"
-            />
+            {icon.customIcon || (
+              <img 
+                src={icon.iconUrl} 
+                alt={icon.title}
+                className="w-12 h-12 drop-shadow-lg"
+              />
+            )}
             <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
               {icon.title}
             </span>
