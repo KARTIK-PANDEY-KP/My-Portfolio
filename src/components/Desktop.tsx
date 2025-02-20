@@ -25,7 +25,13 @@ export const Desktop = () => {
   };
 
   const openResume = () => {
-    window.open('https://drive.google.com/file/d/1yFPOWOoSzX8N2JRJh8ZZibAOxaBilS_c/view?usp=sharing', '_blank');
+    const offset = (windows.length * 30) % 150;
+    setWindows([...windows, { 
+      id: nextId, 
+      title: 'My Resume',
+      position: { x: 100 + offset, y: 100 + offset }
+    }]);
+    setNextId(nextId + 1);
   };
 
   const closeWindow = (id: number) => {
@@ -66,6 +72,17 @@ export const Desktop = () => {
   ];
 
   const renderWindowContent = (title: string) => {
+    if (title === 'My Resume') {
+      return (
+        <div className="w-full h-full min-h-[600px] bg-white">
+          <iframe 
+            src="https://drive.google.com/file/d/1yFPOWOoSzX8N2JRJh8ZZibAOxaBilS_c/preview"
+            className="w-full h-full"
+            allow="autoplay"
+          ></iframe>
+        </div>
+      );
+    }
     return (
       <div className="p-4">
         <h2 className="text-lg font-semibold mb-4">{title}</h2>
