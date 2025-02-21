@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { Window } from './Window';
 import { TaskBar } from './TaskBar';
-import { FileText } from 'lucide-react'; // Import the FileText icon for the resume
+import { FileText } from 'lucide-react';
 
 interface WindowState {
   id: number;
@@ -75,20 +74,6 @@ export const Desktop = () => {
     if (title === 'My Resume') {
       return (
         <div className="w-full h-full bg-[#ECE9D8] flex flex-col">
-          <div className="flex items-center gap-2 px-2 py-1 border-b border-[#A0A0A0]">
-            <button className="hover:bg-[#E5F3FF] p-1 rounded">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3.33337 8H12.6667" stroke="black" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M7.33337 12.6667L2.66671 8.00004L7.33337 3.33337" stroke="black" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button className="hover:bg-[#E5F3FF] p-1 rounded">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M12.6666 8L3.33329 8" stroke="black" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M8.66663 12.6667L13.3333 8.00004L8.66663 3.33337" stroke="black" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
           <div className="flex-1 bg-white p-1">
             <iframe 
               src="https://drive.google.com/file/d/1yFPOWOoSzX8N2JRJh8ZZibAOxaBilS_c/preview"
