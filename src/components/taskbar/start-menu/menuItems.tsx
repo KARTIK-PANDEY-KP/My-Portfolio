@@ -1,21 +1,16 @@
 import { MenuItem } from './types';
+import { Github, Linkedin } from 'lucide-react';
 
 export const leftMenuItems: MenuItem[] = [
   { 
-    icon: <img 
-      src="/lovable-uploads/901ccaa9-1397-469c-9194-61f73e330cf6.png" 
-      alt="Github" 
-      className="w-6 h-6" 
-    />, 
-    label: 'Github' 
+    icon: <Github className="w-6 h-6" />, 
+    label: 'Github',
+    url: 'https://github.com/KARTIK-PANDEY-KP'
   },
   { 
-    icon: <img 
-      src="/lovable-uploads/9bec12b8-bbac-475c-aa34-ac6ad3518620.png" 
-      alt="LinkedIn" 
-      className="w-6 h-6" 
-    />, 
-    label: 'LinkedIn' 
+    icon: <Linkedin className="w-6 h-6" />, 
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/kartik-pandey-kp/'
   },
   { 
     icon: <img 
@@ -28,10 +23,11 @@ export const leftMenuItems: MenuItem[] = [
   { 
     icon: <img 
       src="/lovable-uploads/9790699b-2351-4e15-a1d6-7ec499b94d02.png" 
-      alt="Personal Website" 
+      alt="Devpost" 
       className="w-6 h-6" 
     />, 
-    label: 'Personal Website' 
+    label: 'Devpost Portfolio',
+    url: 'https://devpost.com/pandeyk'
   },
 ];
 
