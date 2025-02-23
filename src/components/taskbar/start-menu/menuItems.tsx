@@ -18,7 +18,8 @@ export const leftMenuItems: MenuItem[] = [
       alt="HuggingFace" 
       className="w-6 h-6" 
     />, 
-    label: 'HuggingFace' 
+    label: 'HuggingFace',
+    url: 'https://huggingface.co/kapiekp'
   },
   { 
     icon: <img 
@@ -38,7 +39,8 @@ export const rightMenuItems: MenuItem[] = [
       alt="My Documents" 
       className="w-6 h-6" 
     />, 
-    label: 'My Documents' 
+    label: 'My Documents',
+    uploadAccept: '.doc,.docx,.pdf,.txt'
   },
   { 
     icon: <img 
@@ -46,7 +48,8 @@ export const rightMenuItems: MenuItem[] = [
       alt="My Pictures" 
       className="w-6 h-6" 
     />, 
-    label: 'My Pictures' 
+    label: 'My Pictures',
+    uploadAccept: 'image/*'
   },
   { 
     icon: <img 
@@ -55,6 +58,15 @@ export const rightMenuItems: MenuItem[] = [
       className="w-6 h-6" 
     />, 
     label: 'My Music' 
+  },
+  { 
+    icon: <img 
+      src="/lovable-uploads/6e35bda1-6465-4300-8789-438e81d958ad.png" 
+      alt="My Videos" 
+      className="w-6 h-6" 
+    />, 
+    label: 'My Videos',
+    uploadAccept: 'video/*'
   },
   { 
     icon: <img 

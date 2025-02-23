@@ -10,7 +10,7 @@ export const UserHeader = () => {
           alt="User" 
           className="w-12 h-12 rounded-lg border-2 border-white object-cover"
         />
-        <span className="text-white font-bold text-lg">KARTIK PANDE</span>
+        <span className="text-white font-bold text-lg">KARTIK PANDEY</span>
       </div>
     </div>
   );

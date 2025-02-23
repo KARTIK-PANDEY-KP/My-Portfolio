@@ -5,6 +5,7 @@ export interface MenuItem {
   icon: ReactNode;
   label: string;
   url?: string;
+  uploadAccept?: string;
 }
 
 export interface MenuSectionProps {
