@@ -1,4 +1,3 @@
-
 import { MenuItem } from './types';
 import { Github, Linkedin } from 'lucide-react';
 
@@ -19,8 +18,7 @@ export const leftMenuItems: MenuItem[] = [
       alt="HuggingFace" 
       className="w-6 h-6" 
     />, 
-    label: 'HuggingFace',
-    url: 'https://huggingface.co/kapiekp'
+    label: 'HuggingFace' 
   },
   { 
     icon: <img 
