@@ -14,7 +14,14 @@ export const MenuSection = ({ items, className = "" }: MenuSectionProps) => {
         <span>External Link</span>
         <button class="close-btn px-2">&times;</button>
       </div>
-      <iframe src="${url}" class="w-full h-[calc(100%-2.5rem)]"></iframe>
+      <div class="flex items-center justify-center w-full h-[calc(100%-2.5rem)] bg-white p-4">
+        <div class="text-center">
+          <p class="mb-4">This link will open in a new window due to security restrictions.</p>
+          <a href="${url}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Click here to open ${url}
+          </a>
+        </div>
+      </div>
     `;
 
     // Add close functionality
