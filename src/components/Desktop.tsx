@@ -1,38 +1,132 @@
-
-import React from 'react';
+import React, { useState } from 'react';
+import { Window } from './Window';
 import { TaskBar } from './TaskBar';
-import RetroPage from './RetroPage';
-import { Briefcase } from 'lucide-react';
+import { FileText } from 'lucide-react';
+
+interface WindowState {
+  id: number;
+  title: string;
+  position: { x: number; y: number };
+}
 
 export const Desktop = () => {
-  const resumeUrl = "https://drive.google.com/file/d/1E3qELLNBcobEiTwQhZl8sv3H4HvxJg_M/view?usp=sharing";
+  const [windows, setWindows] = useState<WindowState[]>([]);
+  const [nextId, setNextId] = useState(1);
 
-  return (
-    <>
-      <div 
-        className="relative h-full overflow-hidden"
-        style={{
-          backgroundImage: "url('https://i.imgur.com/v5eQQr5.jpeg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="absolute inset-0 p-2 overflow-auto">
-          <div className="grid grid-cols-auto-fit gap-4">
-            <RetroPage />
-            <a
-              href={resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="desktop-icon flex flex-col items-center space-y-2 p-2 hover:bg-white/10 rounded"
-            >
-              <Briefcase className="w-10 h-10 text-vista-accent" />
-              <span className="text-sm text-center text-white">Resume</span>
-            </a>
+  const openWindow = (title: string) => {
+    const offset = (windows.length * 30) % 150;
+    setWindows([...windows, { 
+      id: nextId, 
+      title,
+      position: { x: 100 + offset, y: 100 + offset }
+    }]);
+    setNextId(nextId + 1);
+  };
+
+  const openResume = () => {
+    const offset = (windows.length * 30) % 150;
+    setWindows([...windows, { 
+      id: nextId, 
+      title: 'My Resume',
+      position: { x: 100 + offset, y: 100 + offset }
+    }]);
+    setNextId(nextId + 1);
+  };
+
+  const closeWindow = (id: number) => {
+    setWindows(windows.filter(w => w.id !== id));
+  };
+
+  const closeAllWindows = () => {
+    setWindows([]);
+  };
+
+  const desktopIcons = [
+    { 
+      title: 'My Resume',
+      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png',
+      onClick: openResume,
+      customIcon: <FileText className="w-12 h-12 text-white drop-shadow-lg" />
+    },
+    { 
+      title: 'My Documents',
+      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png'
+    },
+    { 
+      title: 'Notepad',
+      iconUrl: '/lovable-uploads/4acedd65-1a68-4afe-a9e3-d0618ac9e82a.png'
+    },
+    { 
+      title: 'My Briefcase',
+      iconUrl: '/lovable-uploads/1b0d2c84-c6fa-4555-9c61-7ab8f7ef3e2e.png'
+    },
+    { 
+      title: 'My Pictures',
+      iconUrl: '/lovable-uploads/9c61f943-1ac0-45ee-9419-4861af0f6b6a.png'
+    },
+    { 
+      title: 'My Videos',
+      iconUrl: '/lovable-uploads/6e35bda1-6465-4300-8789-438e81d958ad.png'
+    }
+  ];
+
+  const renderWindowContent = (title: string) => {
+    if (title === 'My Resume') {
+      return (
+        <div className="w-full h-full bg-[#ECE9D8] flex flex-col">
+          <div className="flex-1 bg-white p-1">
+            <iframe 
+              src="https://drive.google.com/file/d/1yFPOWOoSzX8N2JRJh8ZZibAOxaBilS_c/preview"
+              className="w-full h-full border border-[#A0A0A0]"
+              allow="autoplay"
+            ></iframe>
           </div>
         </div>
+      );
+    }
+    return (
+      <div className="p-4">
+        <h2 className="text-lg font-semibold mb-4">{title}</h2>
+        <p className="text-gray-600">Content for {title}</p>
       </div>
-      <TaskBar />
-    </>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-[url('/lovable-uploads/1ca93d81-8052-47a5-9ebd-bbedc21d0ad5.png')] bg-cover bg-center p-4">
+      <div className="grid grid-cols-auto-fit gap-6 p-4">
+        {desktopIcons.map((icon, index) => (
+          <button
+            key={index}
+            onClick={icon.onClick || (() => openWindow(icon.title))}
+            className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
+          >
+            {icon.customIcon || (
+              <img 
+                src={icon.iconUrl} 
+                alt={icon.title}
+                className="w-12 h-12 drop-shadow-lg"
+              />
+            )}
+            <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
+              {icon.title}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {windows.map((window) => (
+        <Window
+          key={window.id}
+          title={window.title}
+          onClose={() => closeWindow(window.id)}
+          initialPosition={window.position}
+        >
+          {renderWindowContent(window.title)}
+        </Window>
+      ))}
+      
+      <TaskBar onCloseAllWindows={closeAllWindows} />
+    </div>
   );
 };
