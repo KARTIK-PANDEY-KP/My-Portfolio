@@ -1,12 +1,41 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MenuSectionProps } from './types';
 import { FileUploader } from './FileUploader';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
 export const MenuSection = ({ items, className = "" }: MenuSectionProps) => {
   const [uploadedFiles, setUploadedFiles] = useState<{ [key: string]: File[] }>({});
   const [isUploaderOpen, setIsUploaderOpen] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  // Load saved files on component mount
+  useEffect(() => {
+    const savedFiles = localStorage.getItem('uploadedFiles');
+    if (savedFiles) {
+      try {
+        // Since Files can't be stored directly in localStorage, we'll store metadata
+        const filesData = JSON.parse(savedFiles);
+        const reconstructedFiles: { [key: string]: File[] } = {};
+        
+        Object.keys(filesData).forEach(key => {
+          reconstructedFiles[key] = filesData[key].map((fileData: any) => {
+            // Create a new File object with the saved metadata
+            const file = new File([], fileData.name, {
+              type: fileData.type,
+              lastModified: fileData.lastModified
+            });
+            return file;
+          });
+        });
+        
+        setUploadedFiles(reconstructedFiles);
+      } catch (error) {
+        console.error('Error loading saved files:', error);
+      }
+    }
+  }, []);
 
   const handleClick = (url?: string, label?: string, uploadAccept?: string) => {
     if (url) {
@@ -18,10 +47,29 @@ export const MenuSection = ({ items, className = "" }: MenuSectionProps) => {
 
   const handleUpload = (label: string, files: FileList) => {
     const newFiles = Array.from(files);
-    setUploadedFiles(prev => ({
-      ...prev,
-      [label]: [...(prev[label] || []), ...newFiles]
-    }));
+    const updatedFiles = {
+      ...uploadedFiles,
+      [label]: [...(uploadedFiles[label] || []), ...newFiles]
+    };
+    
+    setUploadedFiles(updatedFiles);
+
+    // Save to localStorage (only metadata)
+    const filesForStorage = Object.keys(updatedFiles).reduce((acc, key) => {
+      acc[key] = updatedFiles[key].map(file => ({
+        name: file.name,
+        type: file.type,
+        lastModified: file.lastModified
+      }));
+      return acc;
+    }, {} as any);
+
+    localStorage.setItem('uploadedFiles', JSON.stringify(filesForStorage));
+
+    toast({
+      title: "Files uploaded successfully",
+      description: `${newFiles.length} file(s) uploaded to ${label}`,
+    });
   };
 
   return (

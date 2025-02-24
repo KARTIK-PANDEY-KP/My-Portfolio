@@ -12,8 +12,10 @@ interface FileUploaderProps {
 
 export const FileUploader = ({ title, acceptedTypes, files, onUpload }: FileUploaderProps) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
+    if (e.target.files && e.target.files.length > 0) {
       onUpload(e.target.files);
+      // Reset the input value to allow uploading the same file again
+      e.target.value = '';
     }
   };
 
@@ -30,7 +32,7 @@ export const FileUploader = ({ title, acceptedTypes, files, onUpload }: FileUplo
           multiple
         />
         <label htmlFor={`file-upload-${title}`}>
-          <Button variant="outline" className="cursor-pointer">
+          <Button variant="outline" className="cursor-pointer w-full">
             <Upload className="mr-2" />
             Upload {title}
           </Button>
@@ -41,11 +43,11 @@ export const FileUploader = ({ title, acceptedTypes, files, onUpload }: FileUplo
         {files.length === 0 ? (
           <p className="text-gray-500">No files uploaded yet</p>
         ) : (
-          <ul className="space-y-1">
+          <ul className="space-y-1 max-h-48 overflow-y-auto">
             {files.map((file, index) => (
-              <li key={index} className="flex items-center space-x-2">
-                <FolderOpen className="w-4 h-4" />
-                <span>{file.name}</span>
+              <li key={index} className="flex items-center space-x-2 py-1 px-2 hover:bg-gray-100 rounded">
+                <FolderOpen className="w-4 h-4 shrink-0" />
+                <span className="truncate">{file.name}</span>
               </li>
             ))}
           </ul>
