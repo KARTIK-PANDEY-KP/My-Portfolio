@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { MenuSectionProps } from './types';
 import { FileUploader } from './FileUploader';
+import { Button } from '@/components/ui/button';
 
 export const MenuSection = ({ items, className = "" }: MenuSectionProps) => {
   const [uploadedFiles, setUploadedFiles] = useState<{ [key: string]: File[] }>({});
