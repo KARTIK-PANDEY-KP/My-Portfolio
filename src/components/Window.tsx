@@ -1,7 +1,6 @@
 
 import React, { useState, useRef } from 'react';
 import { Minus, Square, X } from 'lucide-react';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './ui/resizable';
 
 interface WindowProps {
   title: string;
@@ -56,7 +55,7 @@ export const Window = ({ title, children, onClose, initialPosition = { x: 100, y
 
   return (
     <div
-      className={`fixed bg-[#ECE9D8] rounded shadow-vista-window animate-window-open border border-[#0054E3]
+      className={`fixed bg-[#ECE9D8] rounded shadow-vista-window animate-window-open border border-[#0054E3] z-50
         ${isMaximized ? 'inset-0 m-0' : ''}
       `}
       style={!isMaximized ? { 
@@ -64,7 +63,7 @@ export const Window = ({ title, children, onClose, initialPosition = { x: 100, y
         top: position.y,
         width: size.width,
         height: size.height,
-        zIndex: dragRef.current.isDragging ? 50 : 10 
+        zIndex: dragRef.current.isDragging ? 100 : 50 
       } : undefined}
     >
       <div
