@@ -210,8 +210,17 @@ const RetroResume = () => {
                 <div className="bg-black/50 p-4 border-2 border-[#00FF00]">
                   <div className="mb-4">
                     <h3 className="text-[#FFFF00] text-xl">&gt; University of Southern California</h3>
-                    <p className="text-[#00FFFF]">M.S. in Computer Science | 2023-2025</p>
-                    <p>Key Courses: Algorithms, Database Systems, NLP, OS</p>
+                    <p className="text-[#00FFFF]">M.S. in Computer Science | August 2023-May 2025</p>
+                    <p className="mb-2">Courses:</p>
+                    <ul className="list-none">
+                      <li>&gt; Analysis of Algorithms</li>
+                      <li>&gt; Database System</li>
+                      <li>&gt; Operating System</li>
+                      <li>&gt; Applied Natural Language Processing</li>
+                      <li>&gt; Web Technologies</li>
+                      <li>&gt; Autonomous Cyber-Physical System</li>
+                      <li>&gt; Information Retrieval and Web Search Engines</li>
+                    </ul>
                   </div>
                   <div>
                     <h3 className="text-[#FFFF00] text-xl">&gt; Thapar Institute of Engineering</h3>

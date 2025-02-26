@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Window } from './Window';
 import { TaskBar } from './TaskBar';
-import { FileText } from 'lucide-react';
 import RetroResume from './RetroResume';
 
 interface WindowState {
@@ -25,16 +24,6 @@ export const Desktop = () => {
     setNextId(nextId + 1);
   };
 
-  const openResume = () => {
-    const offset = (windows.length * 30) % 150;
-    setWindows([...windows, { 
-      id: nextId, 
-      title: 'My Resume',
-      position: { x: 100 + offset, y: 100 + offset }
-    }]);
-    setNextId(nextId + 1);
-  };
-
   const closeWindow = (id: number) => {
     setWindows(windows.filter(w => w.id !== id));
   };
@@ -45,10 +34,14 @@ export const Desktop = () => {
 
   const desktopIcons = [
     { 
-      title: 'My Resume',
-      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png',
-      onClick: openResume,
-      customIcon: <FileText className="w-12 h-12 text-white drop-shadow-lg" />
+      title: 'Resume',
+      iconUrl: '/lovable-uploads/6f2f8e2a-da53-4cce-a635-ae395b3de1f6.png',
+      onClick: () => openWindow('Resume')
+    },
+    { 
+      title: 'Portfolio',
+      iconUrl: '/lovable-uploads/ec6d49e9-4f30-4ad7-8331-4d4b848f5f98.png',
+      customComponent: <RetroResume />
     },
     { 
       title: 'My Documents',
@@ -73,7 +66,7 @@ export const Desktop = () => {
   ];
 
   const renderWindowContent = (title: string) => {
-    if (title === 'My Resume') {
+    if (title === 'Resume') {
       return (
         <div className="w-full h-full bg-[#ECE9D8] flex flex-col">
           <div className="flex-1 bg-white p-1">
@@ -98,24 +91,23 @@ export const Desktop = () => {
     <div className="min-h-screen bg-[url('/lovable-uploads/1ca93d81-8052-47a5-9ebd-bbedc21d0ad5.png')] bg-cover bg-center p-4">
       <div className="grid grid-cols-auto-fit gap-6 p-4">
         {desktopIcons.map((icon, index) => (
-          <button
-            key={index}
-            onClick={icon.onClick || (() => openWindow(icon.title))}
-            className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
-          >
-            {icon.customIcon || (
+          icon.customComponent || (
+            <button
+              key={index}
+              onClick={icon.onClick || (() => openWindow(icon.title))}
+              className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
+            >
               <img 
                 src={icon.iconUrl} 
                 alt={icon.title}
                 className="w-12 h-12 drop-shadow-lg"
               />
-            )}
-            <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
-              {icon.title}
-            </span>
-          </button>
+              <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
+                {icon.title}
+              </span>
+            </button>
+          )
         ))}
-        <RetroResume />
       </div>
 
       {windows.map((window) => (
