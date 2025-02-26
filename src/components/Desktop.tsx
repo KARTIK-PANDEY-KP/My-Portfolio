@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { Window } from './Window';
 import { TaskBar } from './TaskBar';
 import { FileText } from 'lucide-react';
+import RetroResume from './RetroResume';
 
 interface WindowState {
   id: number;
@@ -113,6 +115,7 @@ export const Desktop = () => {
             </span>
           </button>
         ))}
+        <RetroResume />
       </div>
 
       {windows.map((window) => (
