@@ -46,9 +46,13 @@ export const Desktop = () => {
   const desktopIcons = [
     { 
       title: 'My Resume',
-      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png',
-      onClick: openResume,
-      customIcon: <FileText className="w-12 h-12 text-white drop-shadow-lg" />
+      iconUrl: '/lovable-uploads/99a7ea86-e69f-4392-8544-9ce4c9743b07.png',
+      onClick: openResume
+    },
+    { 
+      title: 'My Portfolio',
+      iconUrl: '/lovable-uploads/ab78877a-1f84-4fee-881e-54a3e501f3a1.png',
+      customComponent: <RetroResume />
     },
     { 
       title: 'My Documents',
@@ -98,24 +102,23 @@ export const Desktop = () => {
     <div className="min-h-screen bg-[url('/lovable-uploads/1ca93d81-8052-47a5-9ebd-bbedc21d0ad5.png')] bg-cover bg-center p-4">
       <div className="grid grid-cols-auto-fit gap-6 p-4">
         {desktopIcons.map((icon, index) => (
-          <button
-            key={index}
-            onClick={icon.onClick || (() => openWindow(icon.title))}
-            className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
-          >
-            {icon.customIcon || (
+          icon.customComponent || (
+            <button
+              key={index}
+              onClick={icon.onClick || (() => openWindow(icon.title))}
+              className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
+            >
               <img 
                 src={icon.iconUrl} 
                 alt={icon.title}
                 className="w-12 h-12 drop-shadow-lg"
               />
-            )}
-            <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
-              {icon.title}
-            </span>
-          </button>
+              <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
+                {icon.title}
+              </span>
+            </button>
+          )
         ))}
-        <RetroResume />
       </div>
 
       {windows.map((window) => (
