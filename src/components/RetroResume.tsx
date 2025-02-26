@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Window } from './Window';
 import { FileText, Mail, Briefcase, Award, GraduationCap, Code, BookOpen, Trophy } from 'lucide-react';
@@ -53,17 +52,8 @@ const RetroResume = () => {
                       "Led a team of 4 to build an AI research assistant",
                       "Automated citation generation and summarization from 250M+ scholarly dataset",
                       "Created Next.js + Flask platform with Firebase for AI-driven search",
+                      "Open-sourced features of NotebookLM, improving accessibility",
                       "Tech Stack: Next.js, Flask, Firebase, GPT-4, SingleStore, Aryn API"
-                    ]
-                  },
-                  {
-                    title: "AI Commentator & Highlighter",
-                    subtitle: "Grand Champion @ GOOGLE (October 2024)",
-                    points: [
-                      "Led development of AI-powered sports media production platform",
-                      "Real-time commentary using digital twin commentators",
-                      "Raised $75,000 funding from Google for Startup",
-                      "Tech Stack: Next.js, Flask, Python, OpenAI, GPT, Gemini"
                     ]
                   },
                   {
@@ -71,8 +61,39 @@ const RetroResume = () => {
                     subtitle: "HackSC Winner (November 2024)",
                     points: [
                       "Led team of 4 to develop AI-powered investment platform",
-                      "Integrated custom trading algorithms and AI strategies",
-                      "Tech Stack: React, SingleStore, DAIN, Google Cloud"
+                      "Designed system and engineered AI agent for custom trading algorithms",
+                      "Developed full-stack platform with DAIN-powered voice commands",
+                      "Automated transaction data aggregation from multiple financial institutions",
+                      "Tech Stack: React, SingleStore, DAIN, Google Cloud, Python, JavaScript"
+                    ]
+                  },
+                  {
+                    title: "AI Commentator & Highlighter",
+                    subtitle: "Grand Champion @ GOOGLE (October 2024)",
+                    points: [
+                      "Led development of AI-powered sports media production platform",
+                      "Implemented real-time commentary using digital twin commentators",
+                      "Raised $75,000 funding from Google for Startup in 24 hours",
+                      "Tech Stack: Next.js, Flask, Python, OpenAI, GPT, Gemini, LLMs"
+                    ]
+                  },
+                  {
+                    title: "Stock Trading System",
+                    subtitle: "February 2024-May 2024",
+                    points: [
+                      "Developed Android app and website for stock trading",
+                      "Implemented symbol search, stock views, virtual trading",
+                      "Enhanced UI/UX with HTML5, CSS, Bootstrap, SQL and Angular",
+                      "Combined 5+ Highcharts APIs for interactive visualization"
+                    ]
+                  },
+                  {
+                    title: "Weenix Operating System",
+                    subtitle: "January 2024-May 2024",
+                    points: [
+                      "Led team of 4 to build UNIX operating system",
+                      "Implemented processes, threads, VFS, VM, shadow objects",
+                      "Created user/kernel shell and crash-resilient file system"
                     ]
                   }
                 ].map((project, index) => (
@@ -98,7 +119,9 @@ const RetroResume = () => {
                     points: [
                       "Researched symbiotic relationship between humans and LLMs",
                       "Developed CAVE with 75.7% accuracy and 0.99 consistency",
-                      "Created HMM for map matching with improved speed and accuracy"
+                      "Distilled GPT-4-TURBO outputs into LLAMA-3-8B",
+                      "Created HMM for map matching with improved speed and accuracy",
+                      "Reduced data cleaning and processing times by 90%"
                     ]
                   },
                   {
@@ -107,7 +130,57 @@ const RetroResume = () => {
                     period: "January 2023-June 2023",
                     points: [
                       "Built scalable ID Card recognition system with 98% accuracy",
-                      "Optimized pipeline for large-scale datasets"
+                      "Optimized pipeline for large-scale datasets",
+                      "Integrated with AWS services for production environment"
+                    ]
+                  },
+                  {
+                    title: "Research Intern",
+                    company: "Carnegie Mellon University",
+                    period: "September 2022-March 2023",
+                    points: [
+                      "Worked on mutational signatures in cancer genomes",
+                      "Developed algorithms using autoencoders for improved accuracy"
+                    ]
+                  },
+                  {
+                    title: "Summer Research Intern",
+                    company: "IIIT-Hyderabad",
+                    period: "May 2022-June 2022",
+                    points: [
+                      "Invented GAN algorithms for pairwise similarity datasets",
+                      "Enhanced model robustness against adversarial attacks",
+                      "Achieved over 95% accuracy in experiments"
+                    ]
+                  },
+                  {
+                    title: "Research Intern",
+                    company: "Moonplexus, Pune",
+                    period: "August 2021-February 2022",
+                    points: [
+                      "Engineered YOLO-based model with 97% accuracy",
+                      "Optimized for real-time vehicle systems",
+                      "Improved performance by 30% for large-scale data"
+                    ]
+                  },
+                  {
+                    title: "Software Developer Intern",
+                    company: "Samsung - SRIB, Bengaluru",
+                    period: "May 2021-November 2021",
+                    points: [
+                      "Led team of four for hand gesture recognition system",
+                      "Achieved 98% accuracy and 30+ FPS",
+                      "Deployed model in Android app with 60% performance improvement"
+                    ]
+                  },
+                  {
+                    title: "Undergraduate Researcher",
+                    company: "Thapar University",
+                    period: "March 2021-June 2021",
+                    points: [
+                      "Led team for precision agriculture project",
+                      "Designed plant disease and weed detection system",
+                      "Achieved 98% accuracy with self-built datasets"
                     ]
                   }
                 ].map((exp, index) => (
@@ -121,6 +194,15 @@ const RetroResume = () => {
                     </ul>
                   </div>
                 ))}
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl text-[#FF00FF] mb-4 border-b-2 border-[#FF00FF]">&gt; PUBLICATIONS &lt;</h2>
+                <div className="bg-black/50 p-4 border-2 border-[#00FF00]">
+                  <h3 className="text-[#FFFF00] text-xl mb-2">&gt; CAVE: Controllable Authorship Verification Explanations</h3>
+                  <p className="text-[#00FFFF] mb-2">NAACL 2025 (January 2025)</p>
+                  <p>Engineered an offline, privacy-preserving Llama-3-8B model for authorship verification, leveraging structured, verifiable free-text rationales to improve label-consistent interpretability and predictive accuracy.</p>
+                </div>
               </section>
 
               <section className="mb-8">
