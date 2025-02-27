@@ -95,11 +95,12 @@ export const Desktop = () => {
       return (
         <div className="w-full h-full bg-black flex items-center justify-center">
           <iframe 
-            src="https://supermarioemulator.com/" 
+            src="https://www.retrogames.cc/embed/22198-super-mario-bros.html"
             width="800" 
             height="600"
             className="border-none"
             allow="fullscreen; autoplay"
+            sandbox="allow-scripts allow-same-origin"
           ></iframe>
         </div>
       );
