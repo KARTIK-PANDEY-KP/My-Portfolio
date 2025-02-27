@@ -51,6 +51,11 @@ export const Desktop = () => {
       customIcon: <FileText className="w-12 h-12 text-white drop-shadow-lg" />
     },
     { 
+      title: 'Super Mario',
+      iconUrl: '/lovable-uploads/4acedd65-1a68-4afe-a9e3-d0618ac9e82a.png',
+      onClick: () => openWindow('Super Mario')
+    },
+    { 
       title: 'My Documents',
       iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png'
     },
@@ -83,6 +88,19 @@ export const Desktop = () => {
               allow="autoplay"
             ></iframe>
           </div>
+        </div>
+      );
+    }
+    if (title === 'Super Mario') {
+      return (
+        <div className="w-full h-full bg-black flex items-center justify-center">
+          <iframe 
+            src="https://supermarioemulator.com/" 
+            width="800" 
+            height="600"
+            className="border-none"
+            allow="fullscreen; autoplay"
+          ></iframe>
         </div>
       );
     }
