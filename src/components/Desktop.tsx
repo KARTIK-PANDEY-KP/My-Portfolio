@@ -106,12 +106,12 @@ export const Desktop = () => {
     }
     if (title === 'Cobra') {
       return (
-        <div className="w-full h-full bg-black flex items-center justify-center">
+        <div className="w-full h-full bg-black flex items-center justify-center overflow-hidden">
           <iframe 
             src="https://www.retrogames.cc/embed/22198-super-mario-bros.html"
-            width="800" 
-            height="600"
-            className="border-none"
+            width="580" 
+            height="360"
+            className="border-none scale-[0.95]"
             allow="fullscreen; autoplay"
             sandbox="allow-scripts allow-same-origin"
           ></iframe>
