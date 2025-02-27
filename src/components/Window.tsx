@@ -1,16 +1,24 @@
 
 import React, { useState, useRef } from 'react';
 import { Minus, Square, X } from 'lucide-react';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './ui/resizable';
 
 interface WindowProps {
   title: string;
   children: React.ReactNode;
   onClose: () => void;
   initialPosition?: { x: number; y: number };
+  zIndex?: number;
+  onFocus?: () => void;
 }
 
-export const Window = ({ title, children, onClose, initialPosition = { x: 100, y: 100 } }: WindowProps) => {
+export const Window = ({ 
+  title, 
+  children, 
+  onClose, 
+  initialPosition = { x: 100, y: 100 },
+  zIndex = 10,
+  onFocus
+}: WindowProps) => {
   const [isMaximized, setIsMaximized] = useState(false);
   const [position, setPosition] = useState(initialPosition);
   const [size, setSize] = useState({ width: 600, height: 400 });
@@ -27,6 +35,7 @@ export const Window = ({ title, children, onClose, initialPosition = { x: 100, y
       startX: e.clientX - position.x,
       startY: e.clientY - position.y
     };
+    onFocus?.();
   };
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -64,8 +73,9 @@ export const Window = ({ title, children, onClose, initialPosition = { x: 100, y
         top: position.y,
         width: size.width,
         height: size.height,
-        zIndex: dragRef.current.isDragging ? 50 : 10 
+        zIndex: dragRef.current.isDragging ? 50 : zIndex
       } : undefined}
+      onClick={onFocus}
     >
       <div
         className="h-8 bg-gradient-to-r from-[#0054E3] to-[#2E8AEF] rounded-t flex items-center justify-between px-2 cursor-move"

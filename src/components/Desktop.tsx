@@ -9,28 +9,41 @@ interface WindowState {
   id: number;
   title: string;
   position: { x: number; y: number };
+  zIndex: number;
 }
 
 export const Desktop = () => {
   const [windows, setWindows] = useState<WindowState[]>([]);
   const [nextId, setNextId] = useState(1);
+  const [topZIndex, setTopZIndex] = useState(10);
+
+  const bringToFront = (id: number) => {
+    setTopZIndex(prev => prev + 1);
+    setWindows(windows.map(w => 
+      w.id === id ? { ...w, zIndex: topZIndex + 1 } : w
+    ));
+  };
 
   const openWindow = (title: string) => {
     const offset = (windows.length * 30) % 150;
+    setTopZIndex(prev => prev + 1);
     setWindows([...windows, { 
       id: nextId, 
       title,
-      position: { x: 100 + offset, y: 100 + offset }
+      position: { x: 100 + offset, y: 100 + offset },
+      zIndex: topZIndex
     }]);
     setNextId(nextId + 1);
   };
 
   const openResume = () => {
     const offset = (windows.length * 30) % 150;
+    setTopZIndex(prev => prev + 1);
     setWindows([...windows, { 
       id: nextId, 
       title: 'My Resume',
-      position: { x: 100 + offset, y: 100 + offset }
+      position: { x: 100 + offset, y: 100 + offset },
+      zIndex: topZIndex
     }]);
     setNextId(nextId + 1);
   };
@@ -51,9 +64,9 @@ export const Desktop = () => {
       customIcon: <FileText className="w-12 h-12 text-white drop-shadow-lg" />
     },
     { 
-      title: 'Super Mario',
+      title: 'Cobra',
       iconUrl: '/lovable-uploads/4acedd65-1a68-4afe-a9e3-d0618ac9e82a.png',
-      onClick: () => openWindow('Super Mario')
+      onClick: () => openWindow('Cobra')
     },
     { 
       title: 'My Documents',
@@ -91,7 +104,7 @@ export const Desktop = () => {
         </div>
       );
     }
-    if (title === 'Super Mario') {
+    if (title === 'Cobra') {
       return (
         <div className="w-full h-full bg-black flex items-center justify-center">
           <iframe 
@@ -143,6 +156,8 @@ export const Desktop = () => {
           title={window.title}
           onClose={() => closeWindow(window.id)}
           initialPosition={window.position}
+          zIndex={window.zIndex}
+          onFocus={() => bringToFront(window.id)}
         >
           {renderWindowContent(window.title)}
         </Window>
