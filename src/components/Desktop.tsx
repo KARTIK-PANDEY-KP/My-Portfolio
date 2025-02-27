@@ -4,7 +4,6 @@ import { Window } from './Window';
 import { TaskBar } from './TaskBar';
 import { FileText } from 'lucide-react';
 import RetroResume from './RetroResume';
-import { MarioGame } from './MarioGame';
 
 interface WindowState {
   id: number;
@@ -47,18 +46,9 @@ export const Desktop = () => {
   const desktopIcons = [
     { 
       title: 'My Resume',
-      iconUrl: '/lovable-uploads/99a7ea86-e69f-4392-8544-9ce4c9743b07.png',
-      onClick: openResume
-    },
-    { 
-      title: 'My Portfolio',
-      iconUrl: '/lovable-uploads/ab78877a-1f84-4fee-881e-54a3e501f3a1.png',
-      customComponent: <RetroResume />
-    },
-    { 
-      title: 'Super Mario',
       iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png',
-      onClick: () => openWindow('Super Mario')
+      onClick: openResume,
+      customIcon: <FileText className="w-12 h-12 text-white drop-shadow-lg" />
     },
     { 
       title: 'My Documents',
@@ -96,9 +86,6 @@ export const Desktop = () => {
         </div>
       );
     }
-    if (title === 'Super Mario') {
-      return <MarioGame />;
-    }
     return (
       <div className="p-4">
         <h2 className="text-lg font-semibold mb-4">{title}</h2>
@@ -111,23 +98,24 @@ export const Desktop = () => {
     <div className="min-h-screen bg-[url('/lovable-uploads/1ca93d81-8052-47a5-9ebd-bbedc21d0ad5.png')] bg-cover bg-center p-4">
       <div className="grid grid-cols-auto-fit gap-6 p-4">
         {desktopIcons.map((icon, index) => (
-          icon.customComponent || (
-            <button
-              key={index}
-              onClick={icon.onClick || (() => openWindow(icon.title))}
-              className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
-            >
+          <button
+            key={index}
+            onClick={icon.onClick || (() => openWindow(icon.title))}
+            className="desktop-icon flex flex-col items-center space-y-2 p-2 rounded hover:bg-white/10 transition-colors group w-20"
+          >
+            {icon.customIcon || (
               <img 
                 src={icon.iconUrl} 
                 alt={icon.title}
                 className="w-12 h-12 drop-shadow-lg"
               />
-              <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
-                {icon.title}
-              </span>
-            </button>
-          )
+            )}
+            <span className="text-white text-sm font-segoe text-center drop-shadow-[1px_1px_2px_rgba(0,0,0,0.8)]">
+              {icon.title}
+            </span>
+          </button>
         ))}
+        <RetroResume />
       </div>
 
       {windows.map((window) => (
