@@ -27,7 +27,7 @@ const StartupVideo: React.FC<StartupVideoProps> = ({ onVideoEnd }) => {
           playsInline
         >
           <source 
-            src="https://ia600302.us.archive.org/13/items/windows-xp-startup-and-shutdown-compilation/Windows%20XP%20Startup%20Sound.mp4" 
+            src="https://archive.org/download/windowsxpstartup_201812/Windows%20XP%20Startup.mp4" 
             type="video/mp4" 
           />
           Your browser does not support the video tag.
