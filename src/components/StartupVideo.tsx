@@ -40,8 +40,7 @@ const StartupVideo: React.FC<StartupVideoProps> = ({ onVideoEnd }) => {
     >
       {!clicked && (
         <div className="text-white text-center">
-          <p className="text-xl mb-4">Click to play startup sound</p>
-          <p className="text-sm">(Browser requires user interaction to play audio)</p>
+          <p className="text-xl mb-4">Click to launch the website</p>
         </div>
       )}
       <video 
