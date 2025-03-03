@@ -44,7 +44,7 @@ const StartupVideo: React.FC<StartupVideoProps> = ({ onVideoEnd }) => {
             <h2 className="text-sm font-semibold">Windows</h2>
           </div>
           <div className="mt-6 text-center">
-            <p className="text-lg font-tahoma">Click to launch the website</p>
+            <p className="text-lg font-tahoma">Click to launch Windows XP desktop</p>
           </div>
         </div>
       )}
