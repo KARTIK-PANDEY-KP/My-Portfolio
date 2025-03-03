@@ -70,23 +70,28 @@ export const Desktop = () => {
     },
     { 
       title: 'My Documents',
-      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png'
+      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png',
+      onClick: () => openWindow('My Documents')
     },
     { 
       title: 'Notepad',
-      iconUrl: '/lovable-uploads/4acedd65-1a68-4afe-a9e3-d0618ac9e82a.png'
+      iconUrl: '/lovable-uploads/4acedd65-1a68-4afe-a9e3-d0618ac9e82a.png',
+      onClick: () => openWindow('Notepad')
     },
     { 
       title: 'My Briefcase',
-      iconUrl: '/lovable-uploads/1b0d2c84-c6fa-4555-9c61-7ab8f7ef3e2e.png'
+      iconUrl: '/lovable-uploads/1b0d2c84-c6fa-4555-9c61-7ab8f7ef3e2e.png',
+      onClick: () => openWindow('My Briefcase')
     },
     { 
       title: 'My Pictures',
-      iconUrl: '/lovable-uploads/9c61f943-1ac0-45ee-9419-4861af0f6b6a.png'
+      iconUrl: '/lovable-uploads/9c61f943-1ac0-45ee-9419-4861af0f6b6a.png',
+      onClick: () => openWindow('My Pictures')
     },
     { 
       title: 'My Videos',
-      iconUrl: '/lovable-uploads/6e35bda1-6465-4300-8789-438e81d958ad.png'
+      iconUrl: '/lovable-uploads/6e35bda1-6465-4300-8789-438e81d958ad.png',
+      onClick: () => openWindow('My Videos')
     }
   ];
 
