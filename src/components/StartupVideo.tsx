@@ -33,6 +33,17 @@ const StartupVideo: React.FC<StartupVideoProps> = ({ onVideoEnd }) => {
     };
   }, [onVideoEnd]);
 
+  // If video fails to load or ends, proceed to desktop
+  useEffect(() => {
+    const video = document.getElementById('startup-video') as HTMLVideoElement;
+    if (video) {
+      video.addEventListener('error', () => {
+        console.error('Video failed to load, proceeding to desktop');
+        onVideoEnd();
+      });
+    }
+  }, [onVideoEnd]);
+
   return (
     <div 
       className="fixed inset-0 bg-black z-50 flex items-center justify-center cursor-pointer"
@@ -51,7 +62,8 @@ const StartupVideo: React.FC<StartupVideoProps> = ({ onVideoEnd }) => {
       <video 
         id="startup-video"
         className="w-full h-full object-cover"
-        src="https://kartik-pandey.netlify.app/202502271923%20(1).mp4"
+        src="/lovable-uploads/202502271923 (1).mp4"
+        onError={() => onVideoEnd()}
         muted={!clicked}
         playsInline
         preload="auto"
