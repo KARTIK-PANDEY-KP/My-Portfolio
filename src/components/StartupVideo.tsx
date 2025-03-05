@@ -51,7 +51,7 @@ const StartupVideo: React.FC<StartupVideoProps> = ({ onVideoEnd }) => {
       <video 
         id="startup-video"
         className="w-full h-full object-cover"
-        src="/202502271923 (1).mp4"
+        src="https://kartik-pandey.netlify.app/202502271923%20(1).mp4"
         muted={!clicked}
         playsInline
         preload="auto"
