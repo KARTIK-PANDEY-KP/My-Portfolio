@@ -70,7 +70,7 @@ export const Desktop = () => {
     },
     { 
       title: 'My Documents',
-      iconUrl: '/lovable-uploads/f8736e34-c644-4ce0-ad98-f0b518a54160.png',
+      iconUrl: '/lovable-uploads/efca3d77-9436-42e1-a271-65d3be957bde.png',
       onClick: () => openWindow('My Documents')
     },
     { 
@@ -117,6 +117,7 @@ export const Desktop = () => {
             width="580" 
             height="360"
             className="border-none scale-[0.95]"
+            frameBorder="0"
             allow="fullscreen; autoplay"
             sandbox="allow-scripts allow-same-origin"
           ></iframe>
